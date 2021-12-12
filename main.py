@@ -120,7 +120,7 @@ class Pinterest:
         """Set path of used file and start webdriver."""
         self.email = email  # Pinterest email.
         self.password = password  # Pinterest password.
-        self.webdriver_path = 'assets/chromedriver.exe'
+        self.webdriver_path = 'assets/chromedriver'
         self.driver = self.webdriver()  # Start new webdriver.
         self.login_url = 'https://www.pinterest.com/login/'
         self.upload_url = 'https://www.pinterest.com/pin-builder/'
@@ -132,6 +132,9 @@ class Pinterest:
         # options.add_argument('headless')  # Headless ChromeDriver.
         options.add_argument('log-level=3')  # No logs is printed.
         options.add_argument('--mute-audio')  # Audio is muted.
+        options.add_argument('-load-extension=/root/pinterest-automatic-uploader/assets/uBlock0.chromium')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--no-sandbox')
         driver = webdriver.Chrome(self.webdriver_path, options=options)
         driver.maximize_window()  # Maximize window to reach all elements.
         return driver
